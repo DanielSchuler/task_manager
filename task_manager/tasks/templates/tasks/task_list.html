@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task List</title>
+</head>
+<body>
+<h1>Task List</h1>
+
+<!-- Create Task button -->
+<a href="{% url 'create_task' %}">
+    <button>Create New Task</button>
+</a>
+
+<ul>
+    {% for task in tasks %}
+    <li>
+        {{ task.title }} -
+        {% if task.completed %}Done{% else %}Pending{% endif %}
+        <a href="{% url 'edit_task' task.id %}">Edit</a> |
+        <a href="{% url 'delete_task' task.id %}">Delete</a>
+    </li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>
